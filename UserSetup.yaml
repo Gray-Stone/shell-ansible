@@ -1,0 +1,29 @@
+--- 
+- name: Initial User setup on dev machine. Ensure 2 user exist, and both are no password sudo 
+  hosts: home-server
+
+  tasks: 
+    - name: Ensure sudoer file is set to also load sudoer.d
+      become: yes
+      lineinfile:
+        path: /etc/sudoers
+        state: present
+        line: "#includedir /etc/sudoers.d"
+        validate: "/usr/sbin/visudo -cf %s"
+
+    - name: Make sure ansible worker account is established. 
+      become: yes 
+      user:
+        name: {{ ansi_worker }}
+        create_home: no
+
+    - name: Add user ansible worker to sudo
+      become: yes
+      lineinfile:
+        path: /etc/sudoers.d/ansi_worker
+        line: "{{ ansi_worker }} ALL=(ALL) NOPASSWD: ALL"
+        state: present
+        mode: 0640
+        create: yes
+        owner: "{{ ansi_worker }}"
+        validate: 'visudo -cf %s'
