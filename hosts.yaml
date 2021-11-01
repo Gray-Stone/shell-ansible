@@ -4,14 +4,11 @@ devs:
       hosts:
         home-server:
           physical_location: home
-          ansi_worker: ans-leo
-          dev_user: leogray
     office_dev:
       hosts:
-        leo-tower:
+        leo-tower-20:
           physical_location: office
-          ansi_worker: ans-leo
-          dev_user: leogray
 
   vars:
-    target_user: leogray
+    dev_user: leogray
+    ansi_worker: ans-leo

@@ -1,0 +1,22 @@
+---
+- name: install desktop env and some house keeping. 
+  hosts: devs
+  become: true
+  become_user: {{ dev_user }}
+
+  #### check if certain folder exists before install. if they do, they will not be removed later. 
+
+  # Music Pictures Public Templates Videos Documents 
+
+  pre_tasks:
+    - name: remember if  in installed
+      stat:
+        path: "{{ ansible_env.HOME }}/folder1"
+      register: folder1
+
+  tasks:
+    - name: Folder existed, remove it 
+      file:
+        state: absent
+        path: "{{ ansible_env.HOME }}/folder1"
+      when: not folder1.stat.exists

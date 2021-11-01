@@ -1,0 +1,692 @@
+{
+	"folder_history":
+	[
+		"/home/leogray/devR/src",
+		"/home/leogray/devR/src/rapidsense_test",
+		"/home/leogray/devR/src/rapidplan"
+	],
+	"last_version": 4113,
+	"last_window_id": 9,
+	"log_indexing": false,
+	"settings":
+	{
+		"new_window_full_screen": false,
+		"new_window_height": 0.0,
+		"new_window_maximized": true,
+		"new_window_settings":
+		{
+			"auto_complete":
+			{
+				"selected_items":
+				[
+					[
+						"CreateRealtim",
+						"TryCreateRealtime"
+					],
+					[
+						"data",
+						"data_packet"
+					],
+					[
+						"kDe",
+						"kDefaultDof"
+					],
+					[
+						"robot_joints",
+						"robot_joints_"
+					],
+					[
+						"Acc",
+						"AcceptApplianceConnection_"
+					],
+					[
+						"run",
+						"RunRobot"
+					]
+				]
+			},
+			"build_system_choices":
+			[
+			],
+			"build_varint": "",
+			"command_palette":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+					[
+						"color",
+						"UI: Select Color Scheme"
+					],
+					[
+						"UI",
+						"UI: Select Color Scheme"
+					],
+					[
+						"theme",
+						"UI: Select Theme"
+					],
+					[
+						"split",
+						"File: Split View"
+					]
+				],
+				"width": 0.0
+			},
+			"console":
+			{
+				"height": 0.0,
+				"history":
+				[
+				]
+			},
+			"distraction_free":
+			{
+				"menu_visible": true,
+				"show_minimap": false,
+				"show_open_files": false,
+				"show_tabs": false,
+				"side_bar_visible": false,
+				"status_bar_visible": false
+			},
+			"file_history":
+			[
+				"/home/leogray/devR/src/rapidplan/src/apps/rtr_appliance_ros/tests/MockRobotLauncher.cpp",
+				"/home/leogray/devR/src/rapidplan/src/apps/rtr_appliance_ros/inc/rtr_appliance_ros/MockRobot.hpp",
+				"/home/leogray/devR/src/rapidplan/src/apps/rtr_appliance_ros/src/MockRobot.cpp",
+				"/home/leogray/devR/src/rapidplan/src/components/rtr_robots/inc/rtr_robots/mock_robot_standard.hpp",
+				"/home/leogray/devR/src/rapidplan/src/apps/rtr_appliance_ros/src/rtr_appliance_ros/MockRobotSetter.py",
+				"/home/leogray/devR/src/rapidplan/src/apps/rtr_appliance_ros/inc/rtr_appliance_ros/MockRobotStandards.hpp",
+				"/home/leogray/devR/src/rapidplan/src/components/rtr_utils/inc/rtr_utils/CyclicalTask.hpp",
+				"/home/leogray/devR/src/rapidplan/src/components/rtr_utils/src/CyclicalTask.cpp",
+				"/home/leogray/devR/src/rapidplan/src/third-party/tbb2/inc/tbb2/task.h",
+				"/home/leogray/devR/src/rapidplan/src/components/rtr_appliance/src/AppliancePathPlannerParam.cpp",
+				"/home/leogray/devR/src/rapidplan/src/apps/rtr_appliance_ros/src/rtr_appliance_ros/AcquireReleaseTest.py",
+				"/home/leogray/devR/src/rapidplan/src/apps/rtr_appliance_ros/CMakeLists.txt",
+				"/home/leogray/devR/install/var/lib/rtr_appliance_app/appliance_data/appliance.db",
+				"/home/leogray/devR/src/rapidsense_test/metal/metal_nightly/auto_longevity_test/src/test_util.py",
+				"/home/leogray/devR/src/rapidsense_test/metal/metal_nightly/auto_longevity_test/tests/launch_auto_test.test",
+				"/home/leogray/devR/src/rapidsense_test/metal/metal_nightly/auto_longevity_test/tests/auto_longevity_pytest.py",
+				"/home/leogray/devR/src/rapidsense_test/metal/metal_nightly/auto_longevity_test/src/auto_longevity_pytest.py",
+				"/home/leogray/devR/src/rapidplan/src/components/rtr_msgs/msg/LoadedProjectInfo.msg",
+				"/home/leogray/devR/src/rapidplan/src/components/rtr_appliance/src/ROSCommandInterface.cpp",
+				"/home/leogray/devR/src/rapidplan/src/components/rtr_msgs/msg/JointConfiguration.msg",
+				"/home/leogray/devR/src/rapidplan/src/apps/rtr_appliance_app/src/Main.cpp",
+				"/home/leogray/devR/src/rapidplan/src/apps/rtr_appliance_ros/src/ApplianceMonitor.cpp",
+				"/home/leogray/devR/src/rapidplan/src/components/rtr_msgs/msg/ProjectInfo.msg",
+				"/home/leogray/devR/src/rapidplan/src/apps/rtr_spatial_perception/src/SpatialPerceptionNode.cpp",
+				"/home/leogray/devR/src/rapidplan/src/components/rtr_msgs/msg/GroupsInfo.msg",
+				"/home/leogray/devR/src/rapidplan/src/apps/rtr_appliance_ros/src/RegionPoseSamplerNode.cpp",
+				"/home/leogray/devR/src/rapidplan/src/apps/rtr_appliance_ros/inc/rtr_appliance_ros/RegionPoseSamplerNode.hpp",
+				"/home/leogray/devR/src/rapidplan/src/components/rtr_perc_rapidsense_ros/src/Playback.cpp",
+				"/home/leogray/devR/src/rapidplan/src/apps/rtr_appliance_ros/src/appliance_commander_node.cpp",
+				"/home/leogray/devR/src/rapidplan/src/apps/rtr_control_ros/srv/Toggle.srv"
+			],
+			"find":
+			{
+				"height": 28.0
+			},
+			"find_in_files":
+			{
+				"height": 98.0,
+				"where_history":
+				[
+				]
+			},
+			"find_state":
+			{
+				"case_sensitive": false,
+				"find_history":
+				[
+					"InitializeLogLevel",
+					"priority",
+					"Priority",
+					"priority",
+					"Priority",
+					"priority",
+					"Priority",
+					"priority",
+					"Priority",
+					"priority",
+					"Priority",
+					"priority",
+					"Priority",
+					"priority",
+					"Priority",
+					"priority",
+					"Priority",
+					"priority",
+					"TryCreateRealtime",
+					"GetError",
+					"kdead",
+					"RecvJointData_",
+					"  \n",
+					"AcceptApplianceConnection_",
+					"src",
+					"AppCommanderRosHelpers"
+				],
+				"highlight": true,
+				"in_selection": false,
+				"preserve_case": false,
+				"regex": false,
+				"replace_history":
+				[
+				],
+				"reverse": false,
+				"scrollbar_highlights": true,
+				"show_context": true,
+				"use_buffer2": true,
+				"use_gitignore": true,
+				"whole_word": false,
+				"wrap": true
+			},
+			"incremental_find":
+			{
+				"height": 28.0
+			},
+			"input":
+			{
+				"height": 0.0
+			},
+			"menu_visible": true,
+			"output.find_results":
+			{
+				"height": 0.0
+			},
+			"pinned_build_system": "",
+			"replace":
+			{
+				"height": 52.0
+			},
+			"save_all_on_build": true,
+			"select_file":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+					[
+						"logging.",
+						"rapidplan/src/components/rtr_utils/src/Logging.cpp"
+					],
+					[
+						"mock robot standard",
+						"rapidplan/src/components/rtr_robots/inc/rtr_robots/mock_robot_standard.hpp"
+					],
+					[
+						"mockrobtstand",
+						"rapidplan/src/components/rtr_robots/inc/rtr_robots/mock_robot_standard.hpp"
+					],
+					[
+						"mockrobotst",
+						"rapidplan/src/apps/rtr_appliance_ros/src/rtr_appliance_ros/MockRobotSetter.py"
+					],
+					[
+						"Cyc",
+						"rapidplan/src/components/rtr_utils/src/CyclicalTask.cpp"
+					],
+					[
+						"mockrobot.hp",
+						"rapidplan/src/apps/rtr_appliance_ros/inc/rtr_appliance_ros/MockRobot.hpp"
+					],
+					[
+						"MockRobotS",
+						"rapidplan/src/apps/rtr_appliance_ros/inc/rtr_appliance_ros/MockRobotStandards.hpp"
+					],
+					[
+						"robotlauncher",
+						"rapidplan/src/apps/rtr_appliance_ros/tests/MockRobotLauncher.cpp"
+					],
+					[
+						"Appliancepathplannerpara",
+						"rapidplan/src/components/rtr_appliance/src/AppliancePathPlannerParam.cpp"
+					],
+					[
+						"rtr_msgs/msg",
+						"src/components/rtr_msgs/msg/GroupsInfo.msg"
+					],
+					[
+						"reginposesamplernode",
+						"src/apps/rtr_appliance_ros/src/RegionPoseSamplerNode.cpp"
+					],
+					[
+						"appliancemonitor",
+						"src/apps/rtr_appliance_ros/src/ApplianceMonitor.cpp"
+					],
+					[
+						".srv",
+						"src/apps/rtr_control_ros/srv/Toggle.srv"
+					],
+					[
+						"projectinfo",
+						"src/components/rtr_msgs/msg/ProjectInfo.msg"
+					],
+					[
+						"loadedproject",
+						"src/components/rtr_msgs/msg/LoadedProjectInfo.msg"
+					]
+				],
+				"width": 0.0
+			},
+			"select_project":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"select_symbol":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"show_minimap": true,
+			"show_open_files": false,
+			"show_tabs": true,
+			"side_bar_visible": true,
+			"side_bar_width": 291.0,
+			"status_bar_visible": true,
+			"template_settings":
+			{
+			}
+		},
+		"new_window_width": 0.0
+	},
+	"windows":
+	[
+		{
+			"auto_complete":
+			{
+				"selected_items":
+				[
+					[
+						"CreateRealtim",
+						"TryCreateRealtime"
+					],
+					[
+						"data",
+						"data_packet"
+					],
+					[
+						"kDe",
+						"kDefaultDof"
+					],
+					[
+						"robot_joints",
+						"robot_joints_"
+					],
+					[
+						"Acc",
+						"AcceptApplianceConnection_"
+					],
+					[
+						"run",
+						"RunRobot"
+					]
+				]
+			},
+			"buffers":
+			[
+				{
+					"file": "/home/leogray/devR/src/rapidplan/src/components/rtr_utils/src/Logging.cpp",
+					"settings":
+					{
+						"buffer_size": 9406,
+						"line_ending": "Unix"
+					}
+				}
+			],
+			"build_system": "",
+			"build_system_choices":
+			[
+			],
+			"build_varint": "",
+			"command_palette":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+					[
+						"color",
+						"UI: Select Color Scheme"
+					],
+					[
+						"UI",
+						"UI: Select Color Scheme"
+					],
+					[
+						"theme",
+						"UI: Select Theme"
+					],
+					[
+						"split",
+						"File: Split View"
+					]
+				],
+				"width": 0.0
+			},
+			"console":
+			{
+				"height": 0.0,
+				"history":
+				[
+				]
+			},
+			"distraction_free":
+			{
+				"menu_visible": true,
+				"show_minimap": false,
+				"show_open_files": false,
+				"show_tabs": false,
+				"side_bar_visible": false,
+				"status_bar_visible": false
+			},
+			"expanded_folders":
+			[
+				"/home/leogray/devR/src",
+				"/home/leogray/devR/src/rapidplan",
+				"/home/leogray/devR/src/rapidplan/src",
+				"/home/leogray/devR/src/rapidplan/src/apps",
+				"/home/leogray/devR/src/rapidplan/src/apps/rtr_appliance_ros",
+				"/home/leogray/devR/src/rapidplan/src/apps/rtr_appliance_ros/src",
+				"/home/leogray/devR/src/rapidplan/src/apps/rtr_appliance_ros/src/rtr_appliance_ros"
+			],
+			"file_history":
+			[
+				"/home/leogray/devR/src/rapidplan/src/apps/rtr_appliance_ros/tests/MockRobotLauncher.cpp",
+				"/home/leogray/devR/src/rapidplan/src/apps/rtr_appliance_ros/inc/rtr_appliance_ros/MockRobot.hpp",
+				"/home/leogray/devR/src/rapidplan/src/apps/rtr_appliance_ros/src/MockRobot.cpp",
+				"/home/leogray/devR/src/rapidplan/src/components/rtr_robots/inc/rtr_robots/mock_robot_standard.hpp",
+				"/home/leogray/devR/src/rapidplan/src/apps/rtr_appliance_ros/src/rtr_appliance_ros/MockRobotSetter.py",
+				"/home/leogray/devR/src/rapidplan/src/apps/rtr_appliance_ros/inc/rtr_appliance_ros/MockRobotStandards.hpp",
+				"/home/leogray/devR/src/rapidplan/src/components/rtr_utils/inc/rtr_utils/CyclicalTask.hpp",
+				"/home/leogray/devR/src/rapidplan/src/components/rtr_utils/src/CyclicalTask.cpp",
+				"/home/leogray/devR/src/rapidplan/src/third-party/tbb2/inc/tbb2/task.h",
+				"/home/leogray/devR/src/rapidplan/src/components/rtr_appliance/src/AppliancePathPlannerParam.cpp",
+				"/home/leogray/devR/src/rapidplan/src/apps/rtr_appliance_ros/src/rtr_appliance_ros/AcquireReleaseTest.py",
+				"/home/leogray/devR/src/rapidplan/src/apps/rtr_appliance_ros/CMakeLists.txt",
+				"/home/leogray/devR/install/var/lib/rtr_appliance_app/appliance_data/appliance.db",
+				"/home/leogray/devR/src/rapidsense_test/metal/metal_nightly/auto_longevity_test/src/test_util.py",
+				"/home/leogray/devR/src/rapidsense_test/metal/metal_nightly/auto_longevity_test/tests/launch_auto_test.test",
+				"/home/leogray/devR/src/rapidsense_test/metal/metal_nightly/auto_longevity_test/tests/auto_longevity_pytest.py",
+				"/home/leogray/devR/src/rapidsense_test/metal/metal_nightly/auto_longevity_test/src/auto_longevity_pytest.py",
+				"/home/leogray/devR/src/rapidplan/src/components/rtr_msgs/msg/LoadedProjectInfo.msg",
+				"/home/leogray/devR/src/rapidplan/src/components/rtr_appliance/src/ROSCommandInterface.cpp",
+				"/home/leogray/devR/src/rapidplan/src/components/rtr_msgs/msg/JointConfiguration.msg",
+				"/home/leogray/devR/src/rapidplan/src/apps/rtr_appliance_app/src/Main.cpp",
+				"/home/leogray/devR/src/rapidplan/src/apps/rtr_appliance_ros/src/ApplianceMonitor.cpp",
+				"/home/leogray/devR/src/rapidplan/src/components/rtr_msgs/msg/ProjectInfo.msg",
+				"/home/leogray/devR/src/rapidplan/src/apps/rtr_spatial_perception/src/SpatialPerceptionNode.cpp",
+				"/home/leogray/devR/src/rapidplan/src/components/rtr_msgs/msg/GroupsInfo.msg",
+				"/home/leogray/devR/src/rapidplan/src/apps/rtr_appliance_ros/src/RegionPoseSamplerNode.cpp",
+				"/home/leogray/devR/src/rapidplan/src/apps/rtr_appliance_ros/inc/rtr_appliance_ros/RegionPoseSamplerNode.hpp",
+				"/home/leogray/devR/src/rapidplan/src/components/rtr_perc_rapidsense_ros/src/Playback.cpp",
+				"/home/leogray/devR/src/rapidplan/src/apps/rtr_appliance_ros/src/appliance_commander_node.cpp",
+				"/home/leogray/devR/src/rapidplan/src/apps/rtr_control_ros/srv/Toggle.srv"
+			],
+			"find":
+			{
+				"height": 28.0
+			},
+			"find_in_files":
+			{
+				"height": 98.0,
+				"where_history":
+				[
+				]
+			},
+			"find_state":
+			{
+				"case_sensitive": false,
+				"find_history":
+				[
+					"InitializeLogLevel",
+					"priority",
+					"Priority",
+					"priority",
+					"Priority",
+					"priority",
+					"Priority",
+					"priority",
+					"Priority",
+					"priority",
+					"Priority",
+					"priority",
+					"Priority",
+					"priority",
+					"Priority",
+					"priority",
+					"Priority",
+					"priority",
+					"TryCreateRealtime",
+					"GetError",
+					"kdead",
+					"RecvJointData_",
+					"  \n",
+					"AcceptApplianceConnection_",
+					"src",
+					"AppCommanderRosHelpers"
+				],
+				"highlight": true,
+				"in_selection": false,
+				"preserve_case": false,
+				"regex": false,
+				"replace_history":
+				[
+				],
+				"reverse": false,
+				"scrollbar_highlights": true,
+				"show_context": true,
+				"use_buffer2": true,
+				"use_gitignore": true,
+				"whole_word": false,
+				"wrap": true
+			},
+			"folders":
+			[
+				{
+					"path": "/home/leogray/devR/src"
+				}
+			],
+			"groups":
+			[
+				{
+					"sheets":
+					[
+						{
+							"buffer": 0,
+							"file": "/home/leogray/devR/src/rapidplan/src/components/rtr_utils/src/Logging.cpp",
+							"selected": true,
+							"semi_transient": false,
+							"settings":
+							{
+								"buffer_size": 9406,
+								"regions":
+								{
+								},
+								"selection":
+								[
+									[
+										6439,
+										6457
+									]
+								],
+								"settings":
+								{
+									"syntax": "Packages/C++/C++.sublime-syntax",
+									"tab_size": 2,
+									"translate_tabs_to_spaces": true
+								},
+								"translation.x": 0.0,
+								"translation.y": 2702.0,
+								"zoom_level": 1.0
+							},
+							"stack_index": 0,
+							"stack_multiselect": false,
+							"type": "text"
+						}
+					]
+				}
+			],
+			"incremental_find":
+			{
+				"height": 28.0
+			},
+			"input":
+			{
+				"height": 0.0
+			},
+			"layout":
+			{
+				"cells":
+				[
+					[
+						0,
+						0,
+						1,
+						1
+					]
+				],
+				"cols":
+				[
+					0.0,
+					1.0
+				],
+				"rows":
+				[
+					0.0,
+					1.0
+				]
+			},
+			"menu_visible": true,
+			"output.find_results":
+			{
+				"height": 0.0
+			},
+			"pinned_build_system": "",
+			"position": "0,1,0,0,0,0,0,0,0,3840,1200,0",
+			"project": "",
+			"replace":
+			{
+				"height": 52.0
+			},
+			"save_all_on_build": true,
+			"select_file":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+					[
+						"logging.",
+						"rapidplan/src/components/rtr_utils/src/Logging.cpp"
+					],
+					[
+						"mock robot standard",
+						"rapidplan/src/components/rtr_robots/inc/rtr_robots/mock_robot_standard.hpp"
+					],
+					[
+						"mockrobtstand",
+						"rapidplan/src/components/rtr_robots/inc/rtr_robots/mock_robot_standard.hpp"
+					],
+					[
+						"mockrobotst",
+						"rapidplan/src/apps/rtr_appliance_ros/src/rtr_appliance_ros/MockRobotSetter.py"
+					],
+					[
+						"Cyc",
+						"rapidplan/src/components/rtr_utils/src/CyclicalTask.cpp"
+					],
+					[
+						"mockrobot.hp",
+						"rapidplan/src/apps/rtr_appliance_ros/inc/rtr_appliance_ros/MockRobot.hpp"
+					],
+					[
+						"MockRobotS",
+						"rapidplan/src/apps/rtr_appliance_ros/inc/rtr_appliance_ros/MockRobotStandards.hpp"
+					],
+					[
+						"robotlauncher",
+						"rapidplan/src/apps/rtr_appliance_ros/tests/MockRobotLauncher.cpp"
+					],
+					[
+						"Appliancepathplannerpara",
+						"rapidplan/src/components/rtr_appliance/src/AppliancePathPlannerParam.cpp"
+					],
+					[
+						"rtr_msgs/msg",
+						"src/components/rtr_msgs/msg/GroupsInfo.msg"
+					],
+					[
+						"reginposesamplernode",
+						"src/apps/rtr_appliance_ros/src/RegionPoseSamplerNode.cpp"
+					],
+					[
+						"appliancemonitor",
+						"src/apps/rtr_appliance_ros/src/ApplianceMonitor.cpp"
+					],
+					[
+						".srv",
+						"src/apps/rtr_control_ros/srv/Toggle.srv"
+					],
+					[
+						"projectinfo",
+						"src/components/rtr_msgs/msg/ProjectInfo.msg"
+					],
+					[
+						"loadedproject",
+						"src/components/rtr_msgs/msg/LoadedProjectInfo.msg"
+					]
+				],
+				"width": 0.0
+			},
+			"select_project":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"select_symbol":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"selected_group": 0,
+			"settings":
+			{
+			},
+			"show_minimap": true,
+			"show_open_files": false,
+			"show_tabs": true,
+			"side_bar_visible": true,
+			"side_bar_width": 291.0,
+			"status_bar_visible": true,
+			"template_settings":
+			{
+			},
+			"window_id": 8,
+			"workspace_name": ""
+		}
+	],
+	"workspaces":
+	{
+		"recent_workspaces":
+		[
+		]
+	}
+}

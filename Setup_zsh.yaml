@@ -1,0 +1,125 @@
+---
+
+- name: Install zsh, antigen
+  hosts: devs
+  become: yes 
+  become_method: sudo 
+  become_user: "{{ ansi_worker }}"
+  vars:
+    - ansible_zsh_folder: .ansible-zsh.d
+
+
+  pre_tasks:
+    - name: Install zsh
+      become: true
+      become_user: root
+      apt:
+        name: zsh 
+        state: present
+  
+  # tasks:
+  #   - name: Download
+  #     command:
+  #       creates: "{{ ansible_env.HOME }}/{{ ansible_antigen_folder }}/antigen.zsh"
+  #       cmd: "curl -L git.io/antigen > {{ ansible_env.HOME }}/{{ ansible_antigen_folder }}/antigen.zsh"
+  tasks:
+    - name: Get the dev user home dir
+      become: yes 
+      become_user: "{{ dev_user }}"
+      shell: 
+        cmd: "echo $HOME"
+        # level: 2
+      changed_when: false
+      register: dev_home
+
+    - name: Print dev_home variable
+      debug:
+        var: dev_home.stdout
+
+    - name: ansible create directory example
+      become: true
+      become_user: root
+      file:
+        path: "{{ dev_home.stdout }}/{{ ansible_zsh_folder }}/"
+        mode: 0774
+        owner: "{{ ansi_worker }}"
+        group: "{{ dev_user }}"
+        state: directory
+
+
+    - name: Install the antigen source file if it doesn't exists. 
+      get_url:
+        url: 'https://git.io/antigen'
+        dest: "{{ dev_home.stdout }}/{{ ansible_zsh_folder }}/antigen.zsh"
+        force: yes
+        mode: 0644
+
+    - name: Install the antigenrc config file
+      copy:
+        force: yes
+        backup: yes
+        mode: 0644
+        dest: "{{ dev_home.stdout }}/{{ ansible_zsh_folder }}/antigenrc"
+        src: "ansible-zsh-templates/antigenrc"
+
+    - name: Install ansible managed zsh config
+      template:
+        force: yes
+        backup: yes
+        mode: 0644
+        dest: "{{ dev_home.stdout }}/{{ ansible_zsh_folder }}/zsh-config"
+        src: "ansible-zsh-templates/zsh-config.j2"
+
+    - name: Check if oh my zsh is installed by checking folder
+      stat:
+        path: "{{ dev_home.stdout }}/.oh-my-zsh"
+      register: oh_my_zsh_dir
+
+    ###################################
+    # When oh my zsh is not installed
+    ###################################
+
+    - name: Install oh my zsh
+      become: yes 
+      become_user: "{{ dev_user }}"
+      shell:
+        chdir: "~/."
+        cmd: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+      when: not oh_my_zsh_dir.stat.exists
+
+    - name: remove .zshrc installed by oh my zsh
+      become: yes
+      become_user: root
+      file: 
+        state: absent
+        path: "{{ dev_user }}/.zshrc"
+      when: not oh_my_zsh_dir.stat.exists
+
+    ##################################
+    # Still run these regardless of oh my zsh just installed or not
+    ##################################
+    - name: Make sure .zshrc exists
+      become: yes 
+      become_user: root
+      file:
+        owner: "{{ dev_user }}"
+        group: "{{ dev_user }}"
+        mode: 0644
+        state: touch 
+        path: "{{ dev_home.stdout }}/.zshrc"
+      
+
+    - name: Insert a ansible managed zsh config to zshrc
+      become: yes 
+      become_user: root
+      blockinfile:
+        owner: "{{ dev_user }}"
+        group: "{{ dev_user }}"
+        path: "{{ dev_home.stdout }}/.zshrc" 
+        mode: 0644
+        insertbefore: BOF
+        marker_begin: "#### Block managed by ansible"
+        marker_end: "#### End of ansible block"
+        block: |
+          source "{{ dev_home.stdout }}/{{ ansible_zsh_folder }}/zsh-config"
+      

@@ -1,0 +1,25 @@
+---
+
+- name: Install some basic packets. (git curl etc)
+  hosts: all
+  become: true
+  # become_user: "{{ansi_worker}}"
+  # become_method: sudo
+
+  tasks:
+    - name: Update apt cache
+      # become: true
+      apt:
+        update_cache: true
+        cache_valid_time: 172800
+
+    - name: install git, curl, tree, htop
+      # become: true
+      apt:
+        name: [git , curl , tree , acl]
+        state: latest
+    
+
+    # -name: install antigen
+    
+    

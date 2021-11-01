@@ -1,0 +1,14 @@
+---
+
+- name: Copy over some config file for dev softwares, under $HOME/.config
+  hosts: all
+  become: yes 
+  become_user: "{{ dev_user }}"
+
+  tasks:
+    - name: Overriding some setting files in .config if not the same
+      copy:
+        src: user-configs/
+        dest: "{{ ansible_env.HOME }}/.config"
+        backup: yes
+        force: yes

@@ -1,0 +1,14 @@
+
+source "{{ dev_home.stdout }}/{{ ansible_zsh_folder }}"/antigen.zsh
+antigen init "{{ dev_home.stdout }}/{{ ansible_zsh_folder }}"/antigenrc
+
+export ZSH="/home/$USER/.oh-my-zsh"
+
+ZSH_THEME_RANDOM_CANDIDATES=(
+	"avit" "bira" "fishy" "gnzh")
+ZSH_THEME=random
+
+HYPHEN_INSENSITIVE="true"
+COMPLETION_WAITING_DOTS="true"
+
+source $ZSH/oh-my-zsh.sh
