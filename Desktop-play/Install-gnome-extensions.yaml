@@ -1,0 +1,23 @@
+---
+
+- name: install gnome extension
+  hosts: devs 
+
+  handlers:
+    - name: Load-gnome-shell-dconf
+      become: yes 
+      become_user: "{{ dev_user }}"
+      shell:
+        cmd: "dconf load /org/gnome/shell/extensions/ < {{ ansible_env.HOME }}/.config/dconf-configs/gnome-extension.dconf "
+
+
+  tasks:
+    - name: Install gnome shell extension 
+      become: yes 
+      apt: 
+        name: gnome-shell-extensions
+        state: present
+      notify: "Load-gnome-shell-dconf"
+    
+  # tasks: install vscode
+

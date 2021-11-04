@@ -1,0 +1,72 @@
+--- 
+- name: Install dev tools and packages (for non GUI tools)
+
+  tasks:
+
+    # ==> For installing micro 
+    - name: Get the dev user home dir
+      become: yes 
+      become_user: "{{ dev_user }}"
+      shell: 
+        cmd: "echo $HOME"
+      changed_when: false
+      register: dev_home
+
+    - name: Print dev_home variable
+      debug:
+        var: dev_home.stdout
+
+    - name: Check if micro is installed
+      stat:
+        path: "{{ dev_home.stdout }}/micro"
+      register: micro_file
+
+
+    - name: install micro
+      become: true
+      become_user: "{{ dev_user }}"
+      shell:
+        chdir: "~/."
+        cmd: "curl https://getmic.ro | bash"
+      when: not micro_file.stat.exists
+      notify: install micro clipboard tool
+    
+    - name: Force run micro install's handlers
+      meta: flush_handlers
+    # For installing micro <==
+
+    # Other good to have dev tools
+    - name: install formatting tools yaml clang-9
+      apt: 
+        name: [ yapf3 , clang-format-9 ] 
+
+    # Trans is great for checking english
+    - name: Install trans
+      apt: 
+        name: translate-shell
+      # notify: translate-shell copy config
+      # For now, the translate-shell config is copied together with the entire config folder
+
+  handlers:
+
+  # Happens only when micro is installed
+    - name: install micro clipboard tool
+      become: true 
+      apt: 
+        name: [xclip , xsel]
+    
+    - name: Link micro into /usr/bin
+      become: true
+      file: 
+        state: link
+        src: "{{ dev_home.stdout }}/micro"
+        path: "/usr/bin/micro"
+  # Happens only when micro is installed
+
+  # Happens only when translate-shell is installed
+    # - name: translate-shell copy config
+    #   copy: not done yet.
+
+
+    
+    

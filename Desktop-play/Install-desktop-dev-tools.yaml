@@ -1,0 +1,24 @@
+---
+
+- name: install desktop dev tools
+  hosts: all
+
+  handlers:
+    - name: Load-tilix-settings
+      become: yes 
+      become_user: "{{ dev_user }}"
+      shell:
+        cmd: "dconf load /com/gexperts/Tilix/ < {{ ansible_env.HOME }}/.config/dconf-configs/tilix.dconf "
+
+
+  tasks:
+    - name: install tilix
+      become: yes 
+      apt: 
+        name: tilix
+        state: present
+      notify: "Load-tilix-settings"
+    
+  # tasks: install vscode
+
+  

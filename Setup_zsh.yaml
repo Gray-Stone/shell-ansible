@@ -92,12 +92,9 @@
       become_user: root
       file: 
         state: absent
-        path: "{{ dev_user }}/.zshrc"
+        path: "{{ dev_home.stdout }}/.zshrc"
       when: not oh_my_zsh_dir.stat.exists
 
-    ##################################
-    # Still run these regardless of oh my zsh just installed or not
-    ##################################
     - name: Make sure .zshrc exists
       become: yes 
       become_user: root
@@ -107,6 +104,9 @@
         mode: 0644
         state: touch 
         path: "{{ dev_home.stdout }}/.zshrc"
+    ##################################
+    # Still run these regardless of oh my zsh just installed or not
+    ##################################
       
 
     - name: Insert a ansible managed zsh config to zshrc
@@ -122,4 +122,10 @@
         marker_end: "#### End of ansible block"
         block: |
           source "{{ dev_home.stdout }}/{{ ansible_zsh_folder }}/zsh-config"
-      
+
+    - name: Set zsh and user default shell 
+      become: yes
+      become_user: root
+      user:
+        name: "{{ dev_user }}"
+        shell: /bin/zsh
