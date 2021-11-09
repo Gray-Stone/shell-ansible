@@ -17,11 +17,6 @@
         name: zsh 
         state: present
   
-  # tasks:
-  #   - name: Download
-  #     command:
-  #       creates: "{{ ansible_env.HOME }}/{{ ansible_antigen_folder }}/antigen.zsh"
-  #       cmd: "curl -L git.io/antigen > {{ ansible_env.HOME }}/{{ ansible_antigen_folder }}/antigen.zsh"
   tasks:
     - name: Get the dev user home dir
       become: yes 

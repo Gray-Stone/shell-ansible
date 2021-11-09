@@ -21,7 +21,6 @@
         path: "{{ dev_home.stdout }}/micro"
       register: micro_file
 
-
     - name: install micro
       become: true
       become_user: "{{ dev_user }}"
@@ -29,7 +28,7 @@
         chdir: "~/."
         cmd: "curl https://getmic.ro | bash"
       when: not micro_file.stat.exists
-      notify: install micro clipboard tool
+      notify: micro just installed
     
     - name: Force run micro install's handlers
       meta: flush_handlers
@@ -44,7 +43,7 @@
     - name: Install trans
       apt: 
         name: translate-shell
-      # notify: translate-shell copy config
+      notify: translate-shell just installed
       # For now, the translate-shell config is copied together with the entire config folder
 
   handlers:
@@ -54,18 +53,42 @@
       become: true 
       apt: 
         name: [xclip , xsel]
-    
+      listen: micro just installed
+
     - name: Link micro into /usr/bin
       become: true
       file: 
         state: link
         src: "{{ dev_home.stdout }}/micro"
         path: "/usr/bin/micro"
+      listen: micro just installed
+
+    - name: Copy micro config files
+      copy:
+        src: user-configs/micro
+        dest: "{{ ansible_env.HOME }}/.config"
+        backup: yes
+        force: no
+      listen: micro just installed
+
   # Happens only when micro is installed
 
   # Happens only when translate-shell is installed
-    # - name: translate-shell copy config
-    #   copy: not done yet.
+    - name: Link translate shell into /usr/bin
+      become: true
+      file: 
+        state: link
+        src: "{{ dev_home.stdout }}/trans"
+        path: "/usr/bin/trans"
+      listen: translate-shell just installed
+
+    - name: Copy translate shell config 
+      copy:
+        src: user-configs/translate-shell
+        dest: "{{ ansible_env.HOME }}/.config"
+        backup: yes
+        force: no
+      listen: translate-shell just installed
 
 
     
