@@ -1,5 +1,6 @@
 --- 
 - name: Install dev tools and packages (for non GUI tools)
+  hosts: devs 
 
   tasks:
 
@@ -36,11 +37,15 @@
 
     # Other good to have dev tools
     - name: install formatting tools yaml clang-9
+      become: true
+      become_user: root    
       apt: 
         name: [ yapf3 , clang-format-9 ] 
 
     # Trans is great for checking english
     - name: Install trans
+      become: true
+      become_user: root
       apt: 
         name: translate-shell
       notify: translate-shell just installed
@@ -57,13 +62,16 @@
 
     - name: Link micro into /usr/bin
       become: true
+      become_user: root
       file: 
-        state: link
+        state: hard
         src: "{{ dev_home.stdout }}/micro"
         path: "/usr/bin/micro"
       listen: micro just installed
 
     - name: Copy micro config files
+      become: yes 
+      become_user: "{{ dev_user }}"
       copy:
         src: user-configs/micro
         dest: "{{ ansible_env.HOME }}/.config"
@@ -74,15 +82,10 @@
   # Happens only when micro is installed
 
   # Happens only when translate-shell is installed
-    - name: Link translate shell into /usr/bin
-      become: true
-      file: 
-        state: link
-        src: "{{ dev_home.stdout }}/trans"
-        path: "/usr/bin/trans"
-      listen: translate-shell just installed
-
+    
     - name: Copy translate shell config 
+      become: yes 
+      become_user: "{{ dev_user }}"
       copy:
         src: user-configs/translate-shell
         dest: "{{ ansible_env.HOME }}/.config"

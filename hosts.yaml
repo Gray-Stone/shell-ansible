@@ -2,13 +2,13 @@ devs:
   children:
     home_dev:
       hosts:
-        home-server:
+        rtr-1063-20:
           physical_location: home
-    office_dev:
-      hosts:
-        leo-tower-20:
-          physical_location: office
+#    office_dev:
+#      hosts:
+#        leo-tower-20:
+#          physical_location: office
 
   vars:
     dev_user: leogray
-    ansi_worker: ans-leo
+    ansi_worker: ans-leogray

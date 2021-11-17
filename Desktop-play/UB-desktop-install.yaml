@@ -1,22 +1,69 @@
 ---
 - name: install desktop env and some house keeping. 
-  hosts: devs
-  become: true
-  become_user: {{ dev_user }}
+  hosts: all
+
+  vars: 
+    optional_folders: ["Music" ,"Pictures" ,"Public" ,"Templates" ,"Videos" ,"Documents"]
 
   #### check if certain folder exists before install. if they do, they will not be removed later. 
 
-  # Music Pictures Public Templates Videos Documents 
+  # Ubuntu desktop recommanded package but not wanted
+  #  hplip
+  # orca
 
   pre_tasks:
-    - name: remember if  in installed
+    - name: remember if some optional folders are installed
+      become: true
+      become_user: "{{ dev_user }}"
+      with_items: "{{ optional_folders }}"
       stat:
-        path: "{{ ansible_env.HOME }}/folder1"
-      register: folder1
+        path: "{{ ansible_env.HOME }}/{{ item }}"
+      register: folder_status
 
   tasks:
-    - name: Folder existed, remove it 
+
+    - name: Install ubuntu desktop
+      become: true
+      apt:
+        name: ubuntu-desktop
+      notify: ubuntu-desktop recommand cleanup
+
+
+    # After UB desktop is installed
+    - name: Removed extra folder added by ubuntu desktop
+      become: true
+      become_user: "{{ dev_user }}"
+      with_items: "{{ folder_status.results }}"
       file:
         state: absent
-        path: "{{ ansible_env.HOME }}/folder1"
-      when: not folder1.stat.exists
+        path: "{{ ansible_env.HOME }}/{{ item.item }}"
+      when: not "{{ item.stat.exists }}"
+
+  handlers:
+
+    - name: Remove Liberoffice packages
+      become: true 
+      apt: 
+        name: libreoffice*
+        state: absent 
+      listen: ubuntu-desktop recommand cleanup
+
+    - name: Remove gnome games 
+      become: true 
+      apt: 
+        pkg: ['gnome-getting-started-docs' ,'gnome-mines' ,'gnome-mahjongg', 'gnome-sudoku']
+        state: absent 
+      listen: ubuntu-desktop recommand cleanup
+    
+    - name: Remove other gnome stuff 
+      become: true 
+      apt:
+        pkg: ['deja-dup', 'orca','remmina' ,'vino' ,'thunderbird' ,'thunderbird-gnome-support' ,'ubuntu-report' ,'transmission-gtk' ]
+        state: absent 
+      listen: ubuntu-desktop recommand cleanup
+
+    - name: Auto remove at the end 
+      become: true 
+      apt:
+        autoremove: yes
+      listen: ubuntu-desktop recommand cleanup

@@ -1,24 +1,47 @@
 ---
 
 - name: install desktop dev tools
-  hosts: all
-
-  handlers:
-    - name: Load-tilix-settings
-      become: yes 
-      become_user: "{{ dev_user }}"
-      shell:
-        cmd: "dconf load /com/gexperts/Tilix/ < {{ ansible_env.HOME }}/.config/dconf-configs/tilix.dconf "
+  hosts: devs
 
 
   tasks:
+      
+    - name: make sure dconf-configs folder exists.
+      become: yes 
+      become_user: "{{ dev_user }}"
+      file:
+        path: "{{ ansible_env.HOME }}/.config/dconf-configs"
+        state: directory
+
+
     - name: install tilix
       become: yes 
       apt: 
         name: tilix
         state: present
-      notify: "Load-tilix-settings"
+      notify: tilix-just-installed
     
-  # tasks: install vscode
+
+  handlers:
+
+    - name: Copy tilix setting
+      become: yes 
+      become_user: "{{ dev_user }}"
+      copy:
+        src: user-configs/dconf-configs/tilix_dconf
+        dest: "{{ ansible_env.HOME }}/.config/dconf-configs/tilix_dconf"
+        backup: yes
+        force: yes
+      listen: tilix-just-installed
+
+    - name: copy tilix dconf loading script 
+      become: yes 
+      become_user: "{{ dev_user }}"
+      copy:
+        src: user-configs/dconf-configs/load_tilix_dconf.sh
+        dest: "{{ ansible_env.HOME }}/.config/dconf-configs/load_tilix_dconf.sh"
+        mode: 0744
+      listen: tilix-just-installed
+
 
   

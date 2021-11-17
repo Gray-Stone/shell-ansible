@@ -1,20 +1,20 @@
----
+# ---
 
-- name: Copy files under $HOME/.local and $HOME/.config
-  hosts: all
-  become: yes 
-  become_user: "{{ dev_user }}"
+# - name: Copy files under $HOME/.local and $HOME/.config
+#   hosts: all
+#   become: yes 
+#   become_user: "{{ dev_user }}"
 
-  tasks:
-    - name: Overriding some setting files in .config if not the same
-      copy:
-        src: user-configs/
-        dest: "{{ ansible_env.HOME }}/.config"
-        backup: yes
-        force: yes
+#   tasks:
+#     - name: Overriding some setting files in .config if not the same
+#       copy:
+#         src: user-configs/
+#         dest: "{{ ansible_env.HOME }}/.config"
+#         backup: yes
+#         force: yes
 
-    - name: Add files to .local if not exits 
-      copy: 
-        src: user-local/
-        dest: "{{ ansible_env.HOME }}/.local"
-        backup: yes
+#     - name: Add files to .local if not exits 
+#       copy: 
+#         src: user-local/
+#         dest: "{{ ansible_env.HOME }}/.local"
+#         backup: yes

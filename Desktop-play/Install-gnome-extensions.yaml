@@ -3,21 +3,48 @@
 - name: install gnome extension
   hosts: devs 
 
-  handlers:
-    - name: Load-gnome-shell-dconf
+  tasks:
+
+    - name: make sure dconf-configs folder exists.
       become: yes 
       become_user: "{{ dev_user }}"
-      shell:
-        cmd: "dconf load /org/gnome/shell/extensions/ < {{ ansible_env.HOME }}/.config/dconf-configs/gnome-extension.dconf "
+      file:
+        path: "{{ ansible_env.HOME }}/.config/dconf-configs"
+        state: directory
 
-
-  tasks:
     - name: Install gnome shell extension 
       become: yes 
       apt: 
         name: gnome-shell-extensions
         state: present
-      notify: "Load-gnome-shell-dconf"
+      notify: gnome-shell-extension just installed
     
-  # tasks: install vscode
 
+  handlers:
+
+    - name: Copy gnome-extension local files
+      become: yes 
+      become_user: "{{ dev_user }}"
+      copy:
+        src: user-local/shell/gnome-shell
+        dest: "{{ ansible_env.HOME }}/.local/shell/gnome-shell"
+      listen: gnome-shell-extension just installed
+
+    - name: Copy gnome-extension dconf
+      become: yes 
+      become_user: "{{ dev_user }}"
+      copy:
+        src: user-configs/dconf-configs/gnome_shell_extension_dconf
+        dest: "{{ ansible_env.HOME }}/.config/dconf-configs/gnome_shell_extension_dconf"
+        backup: yes
+        force: yes
+      listen: gnome-shell-extension just installed
+
+    - name: Load-gnome-shell-dconf
+      become: yes 
+      become_user: "{{ dev_user }}"
+      copy:
+        src: user-configs/dconf-configs/load_gnome_extension_dconf.sh
+        dest: "{{ ansible_env.HOME }}/.config/dconf-configs/load_gnome_extension_dconf.sh"
+        mode: 0744
+      listen: gnome-shell-extension just installed
