@@ -1,13 +1,15 @@
 devs:
   children:
-    home_dev:
+    # home_dev:
+    #   hosts:
+    #     rtr-1063-20:
+    #       physical_location: home
+    office_dev:
       hosts:
-        rtr-1063-20:
-          physical_location: home
-#    office_dev:
-#      hosts:
-#        leo-tower-20:
-#          physical_location: office
+        aws:
+          physical_location: remote
+
+      
 
   vars:
     dev_user: leogray

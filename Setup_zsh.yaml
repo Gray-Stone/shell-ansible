@@ -117,6 +117,9 @@
         marker_end: "#### End of ansible block"
         block: |
           source "{{ dev_home.stdout }}/{{ ansible_zsh_folder }}/zsh-config"
+          [ -f $HOME/.LeoConfig/.Leo-aliases ] &&  . $HOME/.LeoConfig/.Leo-aliases 
+
+          export SHELL=/bin/zsh
 
     - name: Set zsh and user default shell 
       become: yes

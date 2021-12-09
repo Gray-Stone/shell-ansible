@@ -12,3 +12,15 @@ HYPHEN_INSENSITIVE="true"
 COMPLETION_WAITING_DOTS="true"
 
 source $ZSH/oh-my-zsh.sh
+
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='micro'
+  LIBGL_ALWAYS_INDIRECT=1
+else
+  export EDITOR='code --wait'
+fi
+
+#special fix for systemd 
+_systemctl_unit_state() {
+  typeset -gA _sys_unit_state
+  _sys_unit_state=( $(__systemctl list-unit-files "$PREFIX*" | awk '{print $1, $2}') ) }
