@@ -114,11 +114,15 @@
         mode: 0644
         insertbefore: BOF
         marker_begin: "#### Block managed by ansible"
-        marker_end: "#### End of ansible block"
+        marker_end: "#### End of ansible block, add more after this"
         block: |
+          # Include the fully managed script from ansible
           source "{{ dev_home.stdout }}/{{ ansible_zsh_folder }}/zsh-config"
+    
+          # Also include some handy alias and scripts if they exists. 
           [ -f $HOME/.LeoConfig/.Leo-aliases ] &&  . $HOME/.LeoConfig/.Leo-aliases 
 
+          # force sub shell
           export SHELL=/bin/zsh
 
     - name: Set zsh and user default shell 
