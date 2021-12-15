@@ -6,8 +6,8 @@ devs:
     #       physical_location: home
     office_dev:
       hosts:
-        aws:
-          physical_location: remote
+        big-red:
+          physical_location: office
 
       
 
