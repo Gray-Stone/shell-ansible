@@ -27,7 +27,15 @@
       apt:
         name: ubuntu-desktop
       notify: ubuntu-desktop recommand cleanup
-
+# 
+# TASK [Removed extra folder added by ubuntu desktop] ***************************************************************************************[WARNING]: conditional statements should not include jinja2 templating delimiters such as {{ }} or {% %}. Found: not "{{ item.stat.exists
+# }}"
+# skipping: [think-server] => (item={'changed': False, 'stat': {'exists': False}, 'invocation': {'module_args': {'path': '/home/leogray/Music', 'follow': False, 'get_md5': False, 'get_checksum': True, 'get_mime': True, 'get_attributes': True, 'checksum_algorithm': 'sha1'}}, 'failed': False, 'item': 'Music', 'ansible_loop_var': 'item'})
+# skipping: [think-server] => (item={'changed': False, 'stat': {'exists': False}, 'invocation': {'module_args': {'path': '/home/leogray/Pictures', 'follow': False, 'get_md5': False, 'get_checksum': True, 'get_mime': True, 'get_attributes': True, 'checksum_algorithm': 'sha1'}}, 'failed': False, 'item': 'Pictures', 'ansible_loop_var': 'item'})
+# skipping: [think-server] => (item={'changed': False, 'stat': {'exists': False}, 'invocation': {'module_args': {'path': '/home/leogray/Public', 'follow': False, 'get_md5': False, 'get_checksum': True, 'get_mime': True, 'get_attributes': True, 'checksum_algorithm': 'sha1'}}, 'failed': False, 'item': 'Public', 'ansible_loop_var': 'item'})
+# skipping: [think-server] => (item={'changed': False, 'stat': {'exists': False}, 'invocation': {'module_args': {'path': '/home/leogray/Templates', 'follow': False, 'get_md5': False, 'get_checksum': True, 'get_mime': True, 'get_attributes': True, 'checksum_algorithm': 'sha1'}}, 'failed': False, 'item': 'Templates', 'ansible_loop_var': 'item'})
+# skipping: [think-server] => (item={'changed': False, 'stat': {'exists': False}, 'invocation': {'module_args': {'path': '/home/leogray/Videos', 'follow': False, 'get_md5': False, 'get_checksum': True, 'get_mime': True, 'get_attributes': True, 'checksum_algorithm': 'sha1'}}, 'failed': False, 'item': 'Videos', 'ansible_loop_var': 'item'})
+# skipping: [think-server] => (item={'changed': False, 'stat': {'exists': False}, 'invocation': {'module_args': {'path': '/home/leogray/Documents', 'follow': False, 'get_md5': False, 'get_checksum': True, 'get_mime': True, 'get_attributes': True, 'checksum_algorithm': 'sha1'}}, 'failed': False, 'item': 'Documents', 'ansible_loop_var': 'item'})
 
     # After UB desktop is installed
     - name: Removed extra folder added by ubuntu desktop

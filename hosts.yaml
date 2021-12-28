@@ -6,8 +6,7 @@ devs:
     #       physical_location: home
     office_dev:
       hosts:
-        big-red:
-          physical_location: office
+        rtr-1063-20:
 
       
 
