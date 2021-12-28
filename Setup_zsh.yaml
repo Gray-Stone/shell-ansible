@@ -65,6 +65,17 @@
         dest: "{{ dev_home.stdout }}/{{ ansible_zsh_folder }}/zsh-config"
         src: "ansible-zsh-templates/zsh-config.j2"
 
+
+    - name: Make sure .zshrc exists
+      become: yes 
+      become_user: root
+      file:
+        owner: "{{ dev_user }}"
+        group: "{{ dev_user }}"
+        mode: 0644
+        state: touch 
+        path: "{{ dev_home.stdout }}/.zshrc"
+
     - name: Check if oh my zsh is installed by checking folder
       stat:
         path: "{{ dev_home.stdout }}/.oh-my-zsh"
@@ -79,30 +90,12 @@
       become_user: "{{ dev_user }}"
       shell:
         chdir: "~/."
-        cmd: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+        cmd: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
       when: not oh_my_zsh_dir.stat.exists
 
-    - name: remove .zshrc installed by oh my zsh
-      become: yes
-      become_user: root
-      file: 
-        state: absent
-        path: "{{ dev_home.stdout }}/.zshrc"
-      when: not oh_my_zsh_dir.stat.exists
-
-    - name: Make sure .zshrc exists
-      become: yes 
-      become_user: root
-      file:
-        owner: "{{ dev_user }}"
-        group: "{{ dev_user }}"
-        mode: 0644
-        state: touch 
-        path: "{{ dev_home.stdout }}/.zshrc"
     ##################################
     # Still run these regardless of oh my zsh just installed or not
     ##################################
-      
 
     - name: Insert a ansible managed zsh config to zshrc
       become: yes 
