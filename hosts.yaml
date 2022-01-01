@@ -6,7 +6,7 @@ devs:
     #       physical_location: home
     office_dev:
       hosts:
-        rtr-1063-20:
+        rtr-1063:
 
       
 
