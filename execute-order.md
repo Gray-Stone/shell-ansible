@@ -1,3 +1,7 @@
+## Some machine will have to create user
+
+sudo useradd -U -m -G sudo leogray && sudo passwd leogray
+
 ## Generic setup process
 
 ```sh
