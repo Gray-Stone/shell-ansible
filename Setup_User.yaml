@@ -27,7 +27,7 @@
         group: "{{ dev_user }}"
         groups: "sudo"
         create_home: yes
-        home: /home/ansible-junk-yard
+        home: "/home/ansible-junk-yard_for_{{ dev_user }}"
     
     - name: Add user ansible worker to sudo
       lineinfile:
