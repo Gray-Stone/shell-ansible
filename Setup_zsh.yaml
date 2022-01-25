@@ -112,9 +112,6 @@
           # Include the fully managed script from ansible
           source "{{ dev_home.stdout }}/{{ ansible_zsh_folder }}/zsh-config"
     
-          # Also include some handy alias and scripts if they exists. 
-          [ -f $HOME/.LeoConfig/.Leo-aliases ] &&  . $HOME/.LeoConfig/.Leo-aliases 
-
           # force sub shell
           export SHELL=/bin/zsh
 
