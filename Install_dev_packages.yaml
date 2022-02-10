@@ -51,6 +51,12 @@
       notify: translate-shell just installed
       # For now, the translate-shell config is copied together with the entire config folder
 
+    - name: Install good tools for shell usage fzf , tldr , bat
+      become: true
+      become_user: root 
+      apt:
+        name: [fzf , tldr , bat]
+
   handlers:
 
   # Happens only when micro is installed

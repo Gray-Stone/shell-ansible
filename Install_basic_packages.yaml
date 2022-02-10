@@ -16,6 +16,6 @@
     - name: install git, curl, tree, htop
       # become: true
       apt:
-        name: [git , curl , tree , acl]
+        name: [git , curl , tree , acl , htop]
         state: latest
 
