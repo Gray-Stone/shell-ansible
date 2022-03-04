@@ -1,6 +1,0 @@
-2021/10/12-13:42:05.888 496 Reusing MANIFEST /home/leogray/.config/tabby/Local Storage/leveldb/MANIFEST-000001
-2021/10/12-13:42:05.888 496 Recovering log #9
-2021/10/12-13:42:05.889 496 Reusing old log /home/leogray/.config/tabby/Local Storage/leveldb/000009.log 
-2021/10/12-14:25:43.037 6004 Level-0 table #13: started
-2021/10/12-14:25:43.045 6004 Level-0 table #13: 22229 bytes OK
-2021/10/12-14:25:43.046 6004 Delete type=0 #9

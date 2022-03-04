@@ -55,7 +55,7 @@
       become: true
       become_user: root 
       apt:
-        name: [fzf , tldr , bat , ripgrep , fd-find]
+        name: [fzf , tldr , bat  , fd-find]
 
   handlers:
 
