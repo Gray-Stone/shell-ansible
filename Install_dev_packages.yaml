@@ -51,11 +51,11 @@
       notify: translate-shell just installed
       # For now, the translate-shell config is copied together with the entire config folder
 
-    - name: Install good tools for shell usage fzf , tldr , bat , ripgrep, fd-find
+    - name: Install good tools for shell usage fzf , tldr , bat, fd-find, aptitude
       become: true
       become_user: root 
       apt:
-        name: [fzf , tldr , bat  , fd-find]
+        name: [fzf , tldr , bat  , fd-find , aptitude]
 
   handlers:
 
