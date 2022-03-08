@@ -114,6 +114,13 @@
     
           # force sub shell
           export SHELL=/bin/zsh
+          function GitPullHead {
+            (
+              set -vx 
+              cur_head="$(git rev-parse --abbrev-ref HEAD)"
+              git pull origin ${cur_head}
+            )
+          }
 
     - name: Set zsh and user default shell 
       become: yes
