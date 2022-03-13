@@ -1,0 +1,9 @@
+devs:
+  children:
+      hosts:
+        rtr-1063-20:
+          physical_location: home
+
+  vars:
+    dev_user: leogray
+    ansi_worker: ans-leogray
