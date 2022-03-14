@@ -4,6 +4,15 @@
   become: yes
 
   tasks: 
+    - name: Make sure dev user is created
+      user:
+        name: "{{ dev_user }}"
+
+        # group: "{{ dev_user }}"
+        append: yes
+        groups: "sudo"
+        create_home: yes
+
     - name: Ensure sudoer file is set to also load sudoer.d
       lineinfile:
         path: /etc/sudoers
@@ -18,23 +27,6 @@
         state: present
         mode: 0640
         create: yes
-        # owner: "{{ dev_user }}"
         validate: 'visudo -cf %s'
 
-    - name: Make sure ansible worker account is established. 
-      user:
-        name: "{{ ansi_worker }}"
-        group: "{{ dev_user }}"
-        groups: "sudo"
-        create_home: yes
-        home: "/home/ansible-junk-yard_for_{{ dev_user }}"
     
-    - name: Add user ansible worker to sudo
-      lineinfile:
-        path: /etc/sudoers.d/ansi_worker
-        line: "{{ ansi_worker }} ALL=(ALL) NOPASSWD: ALL"
-        state: present
-        mode: 0640
-        create: yes
-        # owner: "{{ ansi_worker }}"
-        validate: 'visudo -cf %s'

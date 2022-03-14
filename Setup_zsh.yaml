@@ -1,10 +1,10 @@
 ---
 
 - name: Install zsh, antigen
-  hosts: devs
+  hosts: all
   become: yes 
   become_method: sudo 
-  become_user: "{{ ansi_worker }}"
+  become_user: "{{ dev_user }}"
   vars:
     - ansible_zsh_folder: .ansible-zsh.d
 
@@ -37,7 +37,7 @@
       file:
         path: "{{ dev_home.stdout }}/{{ ansible_zsh_folder }}/"
         mode: 0774
-        owner: "{{ ansi_worker }}"
+        owner: "{{ dev_user }}"
         group: "{{ dev_user }}"
         state: directory
 

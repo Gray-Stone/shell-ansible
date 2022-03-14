@@ -1,6 +1,8 @@
 --- 
 - name: Install dev tools and packages (for non GUI tools)
-  hosts: devs 
+  hosts: all 
+
+# This requires {{ dev_user }} variable exists for dev hosts.
 
   tasks:
 
@@ -35,12 +37,6 @@
       meta: flush_handlers
     # For installing micro <==
 
-    # Other good to have dev tools
-    - name: install formatting tools yaml clang-9
-      become: true
-      become_user: root    
-      apt: 
-        name: [ yapf3 , clang-format-9 ] 
 
     # Trans is great for checking english
     - name: Install trans
@@ -80,7 +76,7 @@
       become_user: "{{ dev_user }}"
       copy:
         src: user-configs/micro
-        dest: "{{ ansible_env.HOME }}/.config"
+        dest: "{{ dev_home.stdout }}/.config"
         backup: yes
         force: no
       listen: micro just installed
@@ -94,7 +90,7 @@
       become_user: "{{ dev_user }}"
       copy:
         src: user-configs/translate-shell
-        dest: "{{ ansible_env.HOME }}/.config"
+        dest: "{{ dev_home.stdout }}/.config"
         backup: yes
         force: no
       listen: translate-shell just installed

@@ -1,0 +1,27 @@
+- hosts: all
+  tasks:
+    - debug:
+        msg: Setup the machine to be useful in Leo's style
+
+- name: Setup dev user
+  import_playbook: Setup_User.yaml
+
+- hosts: all
+  tasks:
+    - debug:
+        msg: User are made now, installing some useful packages
+
+
+- name: Basic package install
+  import_playbook: Install_basic_packages.yaml
+
+- name: Install dev packages 
+  import_playbook: Install_dev_packages.yaml
+
+- hosts: all
+  tasks:
+    - debug:
+        msg: Packages are there, install and configure ZSH!
+        
+- name: Install zsh
+  import_playbook: Setup_zsh.yaml

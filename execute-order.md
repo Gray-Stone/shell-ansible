@@ -2,6 +2,19 @@
 
 sudo useradd -U -m -G sudo leogray && sudo passwd leogray
 
+# Use mainbook
+
+cli-mainbook.yaml contains the full list of playbooks that setup cli dev environment
+
+```bash
+ansible-playbook cli-mainbook.yaml --ask-become-pass &&
+
+```
+
+
+---
+# Old execute oder.
+
 ## Generic setup process
 
 ```sh
