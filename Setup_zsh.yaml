@@ -87,6 +87,7 @@
         marker_begin: "#### Block Inserted by ansible ####"
         marker_end: "#### End of ansible block, add more after this ####"
         block: |
+        
           # Include the fully managed script from ansible
           source "{{ dev_home.stdout }}/{{ shell_config_dir }}/zsh-config.zsh"
     
