@@ -6,7 +6,7 @@
   become_method: sudo 
   become_user: "{{ dev_user }}"
   vars:
-    - ansible_zsh_folder: .ansible-zsh.d
+    - shell_config_dir: .shell-config
 
 
   pre_tasks:
@@ -31,40 +31,18 @@
       debug:
         var: dev_home.stdout
 
-    - name: ansible create directory example
-      become: true
-      become_user: root
-      file:
-        path: "{{ dev_home.stdout }}/{{ ansible_zsh_folder }}/"
-        mode: 0774
-        owner: "{{ dev_user }}"
-        group: "{{ dev_user }}"
-        state: directory
+    - name: Clone the shell-config repo
+      git:
+        clone: yes
+        repo: https://github.com/Gray-Stone/shell-config
+        dest: "{{ dev_home.stdout }}/{{ shell_config_dir }}"
 
-
-    - name: Install the antigen source file if it doesn't exists. 
+    - name: Install the antigen source file anyway. 
       get_url:
         url: 'https://git.io/antigen'
-        dest: "{{ dev_home.stdout }}/{{ ansible_zsh_folder }}/antigen.zsh"
+        dest: "{{ dev_home.stdout }}/{{ shell_config_dir }}/antigen.zsh"
         force: yes
         mode: 0644
-
-    - name: Install the antigenrc config file
-      copy:
-        force: yes
-        backup: yes
-        mode: 0644
-        dest: "{{ dev_home.stdout }}/{{ ansible_zsh_folder }}/antigenrc"
-        src: "ansible-zsh-templates/antigenrc"
-
-    - name: Install ansible managed zsh config
-      template:
-        force: yes
-        backup: yes
-        mode: 0644
-        dest: "{{ dev_home.stdout }}/{{ ansible_zsh_folder }}/zsh-config"
-        src: "ansible-zsh-templates/zsh-config.j2"
-
 
     - name: Make sure .zshrc exists
       become: yes 
@@ -106,29 +84,16 @@
         path: "{{ dev_home.stdout }}/.zshrc" 
         mode: 0644
         insertbefore: BOF
-        marker_begin: "#### Block managed by ansible"
-        marker_end: "#### End of ansible block, add more after this"
+        marker_begin: "#### Block Inserted by ansible ####"
+        marker_end: "#### End of ansible block, add more after this ####"
         block: |
           # Include the fully managed script from ansible
-          source "{{ dev_home.stdout }}/{{ ansible_zsh_folder }}/zsh-config"
+          source "{{ dev_home.stdout }}/{{ shell_config_dir }}/zsh-config.zsh"
     
           # force sub shell
           export SHELL=/bin/zsh
-          function GitPull {
-            (
-              set -vx 
-              cur_head="$(git rev-parse --abbrev-ref HEAD)"
-              git pull origin ${cur_head}
-            )
-          }
 
-          function GitPush {
-            (
-              set -vx 
-              cur_head="$(git rev-parse --abbrev-ref HEAD)"
-              git push origin ${cur_head}
-            )
-          }
+          # Most are in shell config repo
 
     - name: Set zsh and user default shell 
       become: yes
