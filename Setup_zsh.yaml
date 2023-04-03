@@ -39,7 +39,7 @@
 
     - name: Install the antigen source file anyway. 
       get_url:
-        url: 'https://git.io/antigen'
+        url: 'http://git.io/antigen'
         dest: "{{ dev_home.stdout }}/{{ shell_config_dir }}/antigen.zsh"
         force: yes
         mode: 0644
