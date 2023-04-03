@@ -21,14 +21,14 @@
 
     - name: Check if micro is installed
       stat:
-        path: "{{ dev_home.stdout }}/micro"
+        path: "/usr/bin/micro"
       register: micro_file
 
     - name: install micro
       become: true
-      become_user: "{{ dev_user }}"
+      become_user: root
       shell:
-        chdir: "~/."
+        chdir: "/usr/bin"
         cmd: "curl https://getmic.ro | bash"
       when: not micro_file.stat.exists
       notify: micro just installed
@@ -62,15 +62,6 @@
       become: true 
       apt: 
         name: [xclip , xsel]
-      listen: micro just installed
-
-    - name: Link micro into /usr/bin
-      become: true
-      become_user: root
-      file: 
-        state: hard
-        src: "{{ dev_home.stdout }}/micro"
-        path: "/usr/bin/micro"
       listen: micro just installed
 
     - name: Copy micro config files
