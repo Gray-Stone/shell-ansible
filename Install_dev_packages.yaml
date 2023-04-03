@@ -48,6 +48,7 @@
       # For now, the translate-shell config is copied together with the entire config folder
 
       # TODO, specially for fd-find, this post step is needed ln -s $(which fdfind) ~/.local/bin/fd
+      # TODO add ripgrep
     - name: Install good tools for shell usage fzf , tldr , bat, fd-find, aptitude
       become: true
       become_user: root 
