@@ -11,8 +11,8 @@
         update_cache: true
         cache_valid_time: 172800
 
-    - name: install git, curl, tree, htop
+    - name: install git, curl, tree, htop, most
       apt:
-        name: [git , curl , tree , acl , htop]
+        name: [git , curl , tree , acl , htop , most]
         state: latest
 
