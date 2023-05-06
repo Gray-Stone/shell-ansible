@@ -59,8 +59,7 @@
       become: true
       become_user: root
       shell:
-        chdir: "/tmp"
-        cmd: "curl -LSfs https://raw.githubusercontent.com/cantino/mcfly/master/ci/install.sh | sh -s -- --git cantino/mcfly"
+        cmd: "curl -LSfs https://raw.githubusercontent.com/cantino/mcfly/master/ci/install.sh | sh -s -- --git cantino/mcfly --force"
       
 
   handlers:
