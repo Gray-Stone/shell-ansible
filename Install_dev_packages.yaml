@@ -49,11 +49,19 @@
 
       # TODO, specially for fd-find, this post step is needed ln -s $(which fdfind) ~/.local/bin/fd
       # TODO add ripgrep
-    - name: Install good tools for shell usage fzf , tldr , bat, fd-find, aptitude
+    - name: Install good tools for shell usage fzf , tldr , bat, fd-find, aptitude, ripgrep
       become: true
       become_user: root 
       apt:
-        name: [fzf , tldr , bat  , fd-find , aptitude]
+        name: [fzf , tldr , bat  , fd-find , aptitude , ripgrep]
+
+    - name: Install mcfly
+      become: true
+      become_user: root
+      shell:
+        chdir: "/tmp"
+        cmd: "curl -LSfs https://raw.githubusercontent.com/cantino/mcfly/master/ci/install.sh | sh -s -- --git cantino/mcfly"
+      
 
   handlers:
 
