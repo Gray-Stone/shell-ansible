@@ -13,7 +13,7 @@
     - name: Install zsh
       become: true
       become_user: root
-      apt:
+      package:
         name: zsh 
         state: present
   

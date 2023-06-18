@@ -6,7 +6,7 @@
 
   tasks:
 
-    # ==> For installing micro 
+    # These two steps are needed to place config file for micro and trans
     - name: Get the dev user home dir
       become: yes 
       become_user: "{{ dev_user }}"
@@ -19,6 +19,19 @@
       debug:
         var: dev_home.stdout
 
+    
+    # ==> For installing micro 
+    
+    # This bit for Arch 
+    - name: Install micro
+      become: yes
+      become_user: root
+      package: 
+        name: micro
+      when: ansible_facts['os_family'] == "Archlinux"
+
+
+    # This bit for ubuntu 
     - name: Check if micro is installed
       stat:
         path: "/usr/bin/micro"
@@ -30,46 +43,8 @@
       shell:
         chdir: "/usr/bin"
         cmd: "curl https://getmic.ro | bash"
-      when: not micro_file.stat.exists
+      when: (not micro_file.stat.exists) and ansible_facts['os_family'] == "Ubuntu"
       notify: micro just installed
-    
-    - name: Force run micro install's handlers
-      meta: flush_handlers
-    # For installing micro <==
-
-
-    # Trans is great for checking english
-    - name: Install trans
-      become: true
-      become_user: root
-      apt: 
-        name: translate-shell
-      notify: translate-shell just installed
-      # For now, the translate-shell config is copied together with the entire config folder
-
-      # TODO, specially for fd-find, this post step is needed ln -s $(which fdfind) ~/.local/bin/fd
-      # TODO add ripgrep
-    - name: Install good tools for shell usage fzf , tldr , bat, fd-find, aptitude, ripgrep
-      become: true
-      become_user: root 
-      apt:
-        name: [fzf , tldr , bat  , fd-find , aptitude , ripgrep]
-
-    - name: Install mcfly
-      become: true
-      become_user: root
-      shell:
-        cmd: "curl -LSfs https://raw.githubusercontent.com/cantino/mcfly/master/ci/install.sh | sh -s -- --git cantino/mcfly --force"
-      
-
-  handlers:
-
-  # Happens only when micro is installed
-    - name: install micro clipboard tool
-      become: true 
-      apt: 
-        name: [xclip , xsel]
-      listen: micro just installed
 
     - name: Copy micro config files
       become: yes 
@@ -79,9 +54,55 @@
         dest: "{{ dev_home.stdout }}/.config"
         backup: yes
         force: no
-      listen: micro just installed
+    
+    # For installing micro <==
 
-  # Happens only when micro is installed
+    - name: install clipboard tool
+      become: true 
+      package: 
+        name: [xclip , xsel]
+
+      # TODO add ripgrep
+    - name: Install good tools for shell usage
+      become: true
+      become_user: root
+      package:
+        name: [fzf , tldr , bat , ripgrep]
+
+      
+      # TODO, specially for ubuntu, fd-find need to be put onto bin ln -s $(which fdfind) ~/.local/bin/fd
+    - name: Install fd-find in arch
+      become: true 
+      become_user: root
+      package: 
+        name: fd
+      when: ansible_facts['os_family'] == "Archlinux"
+
+    - name: Install ubuntu specific packages 
+      become: true 
+      become_user: root
+      package: 
+        name: [fd-find , aptitude]
+      when: ansible_facts['os_family'] == "Ubuntu"
+
+
+    - name: Install mcfly
+      become: true
+      become_user: root
+      shell:
+        cmd: "curl -LSfs https://raw.githubusercontent.com/cantino/mcfly/master/ci/install.sh | sh -s -- --git cantino/mcfly --force"
+      
+    # Trans is great for checking english
+    - name: Install trans
+      become: true
+      become_user: root
+      package: 
+        name: translate-shell
+      notify: translate-shell just installed
+      # For now, the translate-shell config is copied together with the entire config folder
+
+
+  handlers:
 
   # Happens only when translate-shell is installed
     

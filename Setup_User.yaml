@@ -4,19 +4,22 @@
   become: yes
 
   tasks: 
-    - name: Make sure dev user is created
-      user:
-        name: "{{ dev_user }}"
+    # Nothing should create file with sudo or wheel group. 
+    # So no need to make my account part of sudo if I just grant it everything 
+    # - name: Make sure dev user is created
+    #   user:
+    #     name: "{{ dev_user }}"
 
-        # group: "{{ dev_user }}"
-        append: yes
-        groups: "sudo"
-        create_home: yes
+    #     # group: "{{ dev_user }}"
+    #     append: yes
+    #     groups: "sudo"
+    #     create_home: yes
 
     - name: Ensure sudoer file is set to also load sudoer.d
       lineinfile:
         path: /etc/sudoers
         state: present
+    # Newer version of sudo will come with @includedir , the # is more backward compatible.
         line: "#includedir /etc/sudoers.d"
         validate: "/usr/sbin/visudo -cf %s"
 
