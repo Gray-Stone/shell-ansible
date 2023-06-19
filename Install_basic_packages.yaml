@@ -9,6 +9,6 @@
 
     - name: install git, curl, tree, htop, most
       package:
-        name: [git , curl , tree , acl , htop , most]
+        name: [git , curl , wget, tree , acl , htop , most]
         state: latest
 
