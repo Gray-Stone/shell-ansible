@@ -31,20 +31,19 @@
       when: ansible_facts['os_family'] == "Archlinux"
 
 
-    # This bit for ubuntu 
     - name: Check if micro is installed
       stat:
         path: "/usr/bin/micro"
       register: micro_file
 
+    # This bit for ubuntu 
     - name: install micro
       become: true
       become_user: root
       shell:
         chdir: "/usr/bin"
         cmd: "curl https://getmic.ro | bash"
-      when: (not micro_file.stat.exists) and ansible_facts['os_family'] == "Ubuntu"
-      notify: micro just installed
+      when: (not micro_file.stat.exists) and ansible_facts['os_family'] != "Archlinux" # I just assume everything else is just ubuntu relatives
 
     - name: Copy micro config files
       become: yes 
