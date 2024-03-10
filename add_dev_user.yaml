@@ -1,0 +1,22 @@
+--- 
+- name: Initial User setup on dev machine. Ensure 2 user exist, and both are no password sudo 
+  hosts: all
+  become: yes
+
+  tasks: 
+    # Nothing should create file with sudo or wheel group. 
+    # So no need to make my account part of sudo if I just grant it everything 
+    - name: Make sure dev user is created
+      user:
+        name: "{{ dev_user }}"
+
+        password: " " # Must have some password, or the account will be locked.
+        # group: "{{ dev_user }}"
+        append: yes
+        groups:
+        - sudo
+        state: present
+        create_home: yes
+
+# Note: Since the password needs to be hashed, the actual password is something else. 
+# So remember to do `sudo passwd username` to set it something usable.
