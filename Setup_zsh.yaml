@@ -6,7 +6,7 @@
   become_method: sudo 
   become_user: "{{ dev_user }}"
   vars:
-    - shell_config_dir: .shell-config
+    shell_config_dir: .shell-config
 
 
   pre_tasks:
@@ -54,22 +54,6 @@
         state: touch 
         path: "{{ dev_home.stdout }}/.zshrc"
 
-    - name: Check if oh my zsh is installed by checking folder
-      stat:
-        path: "{{ dev_home.stdout }}/.oh-my-zsh"
-      register: oh_my_zsh_dir
-
-    ###################################
-    # When oh my zsh is not installed
-    ###################################
-
-    - name: Install oh my zsh
-      become: yes 
-      become_user: "{{ dev_user }}"
-      shell:
-        chdir: "~/."
-        cmd: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
-      when: not oh_my_zsh_dir.stat.exists
 
     ##################################
     # Still run these regardless of oh my zsh just installed or not
