@@ -6,6 +6,9 @@
   become_method: sudo
 
   tasks:
+    - name: Update package cache
+      ansible.builtin.package:
+        update_cache: true
 
     - name: install git, curl, tree, htop, most
       package:

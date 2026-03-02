@@ -61,14 +61,36 @@
       package: 
         name: [xclip , xsel]
 
-      # TODO add ripgrep
-    - name: Install good tools for shell usage
+    - name: Install optional shell tools
       become: true
       become_user: root
       package:
-        name: [fzf , tldr , bat , ripgrep]
+        name: "{{ item }}"
+        state: present
+      loop:
+        - fzf
+        - tldr
+        - bat
+        - ripgrep
+      register: optional_shell_tools
+      ignore_errors: true
 
-      
+    - name: Build list of optional shell tools that failed to install
+      set_fact:
+        optional_shell_tools_failed: >-
+          {{
+            (optional_shell_tools.results | default([]))
+            | selectattr('failed', 'defined')
+            | selectattr('failed')
+            | map(attribute='item')
+            | list
+          }}
+
+    - name: Warn when optional shell tools fail
+      debug:
+        msg: "Optional packages failed to install (continuing): {{ optional_shell_tools_failed | join(', ') }}"
+      when: optional_shell_tools_failed | length > 0
+
       # TODO, specially for ubuntu, fd-find need to be put onto bin ln -s $(which fdfind) ~/.local/bin/fd
     - name: Install fd-find in arch
       become: true 

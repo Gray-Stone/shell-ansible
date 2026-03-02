@@ -1,0 +1,29 @@
+---
+- name: Ensure become credentials are available when needed
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: Check whether passwordless sudo is available
+      become: false
+      ansible.builtin.command: sudo -n true
+      register: sudo_probe
+      changed_when: false
+      failed_when: false
+
+    - name: Ask for sudo password when passwordless sudo is unavailable
+      become: false
+      ansible.builtin.pause:
+        prompt: "Sudo password required for {{ inventory_hostname }}. Enter sudo password"
+        echo: false
+      register: sudo_password_prompt
+      when: sudo_probe.rc != 0
+      no_log: true
+
+    - name: Set become password for the rest of this run
+      become: false
+      ansible.builtin.set_fact:
+        ansible_become_password: "{{ sudo_password_prompt.user_input }}"
+        ansible_become_pass: "{{ sudo_password_prompt.user_input }}"
+      when: sudo_probe.rc != 0
+      no_log: true

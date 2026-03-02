@@ -4,39 +4,31 @@ sudo useradd -U -m -G sudo leogray && sudo passwd leogray
 
 # Use mainbook
 
-cli-mainbook.yaml contains the full list of playbooks that setup cli dev environment
+`cli-mainbook.yaml` contains the full list of playbooks that setup CLI dev environment.
+
+Run it directly:
 
 ```bash
-ansible-playbook cli-mainbook.yaml --ask-become-pass
-
+ansible-playbook cli-mainbook.yaml
 ```
 
+It now checks passwordless sudo first and asks for sudo password only when needed.
 
 ---
-# Old execute oder.
-
-## Generic setup process
+## Setup ubuntu desktop
 
 ```sh
-ansible-playbook Setup_User.yaml --ask-become-pass &&
-ansible-playbook Install_basic_packages.yaml
-```
-
-## Setup command line dev env
-
-```
-ansible-playbook Setup_zsh.yaml &&
-ansible-playbook Install_dev_packages.yaml
-```
-
-## Setup ubuntu desktop 
-
 ansible-playbook Desktop-play/UB-desktop-install.yaml
+```
 
-## Setup desktop dev enviroment
+## Setup desktop dev environment
 
+```sh
 ansible-playbook Desktop-play/Install-desktop-dev-tools.yaml
+```
 
-## Setup desktop in my flavior
+## Setup desktop in my flavor
 
+```sh
 ansible-playbook Desktop-play/Install-gnome-extensions.yaml
+```
